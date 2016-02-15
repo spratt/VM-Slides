@@ -1,16 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BeamerTemplate
+% VM Slides
 % February 15, 2016
-% By Simon David Pratt (mostly)
 
-% remove aspectratio=169 if you want 4:3 ratio instead of 16:9
 \documentclass[aspectratio=169]{beamer}
 \usepackage{styles/presentation}
 
-\title{Presentation Title}
-\subtitle{Subtitle}
+\title{Virtual Memory}
+\subtitle{A Project for CS854}
 
-\author[Short Author List]{Long\\Author\\List}
+\author[N. Chen, S. Pratt, K. Vaidyanathan]{Nick Chen\\Simon Pratt\\%
+Krishna Vaidyanathan}
 
 \date{\today}
 
@@ -25,113 +24,199 @@
 
 \frame[plain]{\titlepage}
 
-\begin{frame}{Lists and Columns}
+\begin{frame}{Proposal}
   \begin{columns}[T]
-    \begin{column}{0.3\textwidth}
+    \begin{column}{0.2\textwidth}
     \end{column}
-    \begin{column}{0.4\textwidth}
-      \bi
-    \item Itemized lists are useful
-      \bi
-    \item Often with sub-lists
-      \ei
+    \begin{column}{0.6\textwidth}
+      Our proposal has 3 parts:
       \bn
-    \item Or enumerations\\(which assign a number to each item)
-    \item If order is important
+      \pause
+    \item {\color<5>{red} Literature Review}
+      \pause
+    \item Experimental Design
+      \pause
+    \item Implementation
       \en
-    \item Narrow columns are easier to read
-      \ei
     \end{column}
-    \begin{column}{0.3\textwidth}
+    \begin{column}{0.2\textwidth}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Background: \texttt{malloc} and \texttt{mmap}}
+\begin{frame}{Proposal: Literature Review}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \includegraphics[scale=0.3]{./figures/Retro.png}
+    \begin{column}{0.4\textwidth}
+      We wish to investigate the following operating systems:
+      \bn
+      \pause
+    \item Linux
+      \pause
+    \item OpenBSD
+      \pause
+    \item OpenIndiana\\(Previously Solaris)
+      \en
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \bi
-      \item Mixing text and images on slides is good
-      \ei
+    \begin{column}{0.6\textwidth}
+      \pause
+    For each OS, we wish to answer the following questions:
+    \bi
+    \pause
+  \item How is physical memory managed?
+    \pause
+  \item Are there data structures for physical pages, separate from
+    the page tables?
+    \pause
+  \item How are contiguous regions of memory managed?
+    \pause
+  \item How is memory freed?
+    \pause
+    \bi
+  \item What happens when the kernel runs out of memory?
+    \ei
+    \pause
+  \item Do they do anything special on Non-Uniform Memory Access
+    (NUMA) architectures?
+    \ei
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{tikz: Animated Diagrams}
+\begin{frame}{Proposal}
   \begin{columns}[T]
-    \begin{column}{0.1\textwidth}
-        \vspace{2cm}
-        \begin{tikzpicture}[node distance=1cm,overlay]
-          \tikzstyle{every node}=[draw]
-          % nodes
-          \node<1-8> (M) {M};
-          \node (T2) [below of=M] {$T_2$};
-          \node (T1) [left of=T2] {$T_1$};
-          \node (T3) [right of=T2] {$T_3$};
-          % edges
-          \draw<3-5> [->] (T1) to (M);
-          \draw<4-6> [->] (T2) to (M);
-          \draw<5-7> [->] (T3) to (M);
-        \end{tikzpicture}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Our proposal has 3 parts:
+      \bn
+    \item Literature Review
+    \item {\color<2>{red} Experimental Design}
+    \item Implementation
+      \en
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Proposal: Experimental Design}
+  \begin{columns}[T]
+    \begin{column}{0.2\textwidth}
     \end{column}
     \begin{column}{0.6\textwidth}
       \bi
-    \item tikz lets you make animated diagrams right in \LaTeX
+      \pause
+    \item Make a \emph{testable} hypothesis based on lit. review
+      \pause
+    \item Design \emph{simple} experiments to test this hypothesis
       \ei
+    \end{column}
+    \begin{column}{0.2\textwidth}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Tables of Data}
-  \begin{center}
-    \begin{tabular}{ l | c | c c | c }
-              &        & \multicolumn{2}{c|}{Linux} & Radix tree \\
-              & RSS    & VMA tree & Page table      & (rel. to Linux) \\
-      \hline
-      Firefox & 352 MB & 117 KB   & 1.5 MB          & 3.9 MB (2.4$\times$) \\
-      Chrome  & 152 MB & 124 KB   & 1.1 MB          & 2.4 MB (2.0$\times$) \\
-      Apache  & 16 MB  & 44 KB    & 368 KB          & 616 KB (1.5$\times$) \\
-      MySQL   & 84 MB  & 18 KB    & 348 KB          & 980 KB (2.7$\times$) \\
-    \end{tabular}
-    \vspace{1em}
-    \bi
-  \item Tables of data can be useful too
-    \ei
-  \end{center}
+\begin{frame}{Proposal}
+  \begin{columns}[T]
+    \begin{column}{0.2\textwidth}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      Our proposal has 3 parts:
+      \bn
+    \item Literature Review
+    \item Experimental Design
+    \item {\color<2>{red} Implementation}
+      \en
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Proposal: Implementation}
+  \begin{columns}[T]
+    \begin{column}{0.2\textwidth}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \bi
+      \pause
+    \item Implement a memory management system for KOS
+      \ei
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Progress}
+  \begin{columns}[T]
+    \begin{column}{0.2\textwidth}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      We have made some progress:
+      \bi
+    \item OpenBSD data structures
+      \ei
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Progress: OpenBSD}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \bi
+    \item 386BSD\\$\downarrow$\\NetBSD\\$\downarrow$\\OpenBSD
+      \pause
+    \item VM based on NetBSD
+      \pause
+      \bi
+    \item Rewritten in 1998
+      \pause
+    \item 270 page PhD dissertation
+      \pause
+      \ei
+      \ei
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[scale=0.35]{./figures/uvm.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Summary}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.2\textwidth}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.6\textwidth}
+      \bn
+    \item Literature Review
       \bi
-    \item Make sure to end with a summary
-    \item Never end on a page that just says:
-      \bi
-    \item Thanks!
-    \item Questions?
+    \item Some progress on data structures!
       \ei
-      \ei
+    \item Experimental Design
+    \item Implementation
+      \en
+    \end{column}
+    \begin{column}{0.2\textwidth}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}[noframenumbering]{References}
+  \small
   \bi
-\item Remember to cite any references
+\item UVM dissertation:\\
+  \url{http://vorpal.math.drexel.edu/course/opsys2/uvm-project/uvm.pdf}
   \ei
 \end{frame}
 
 \begin{frame}[noframenumbering]{Attribution}
+  \tiny
   \bi
-  \item Give attribution where appropriate!
-  {\small
-  \item Retro clip art from the public domain, courtesy of:\\
-    \url{https://openclipart.org/detail/234926/retro-test-pattern}}
+\item OpenBSD data structure diagram from:\\
+  \url{http://usenix.org/legacy/publications/library/proceedings/usenix99/full_papers/cranor/cranor_html/index.html}
   \ei
 \end{frame}
 
