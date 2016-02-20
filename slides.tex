@@ -3,7 +3,7 @@
 % February 15, 2016
 
 \documentclass[aspectratio=169]{beamer}
-\usepackage{styles/presentation}
+%\usepackage{styles/presentation}
 
 \title{Virtual Memory}
 \subtitle{A Project for CS854}
@@ -185,6 +185,29 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
+\begin{frame}{Progress: OpenIndiana}
+    \begin{enumerate}
+        \item Open source fork of OpenSolaris after Oracle take over
+        \item Stewarded by the Illumos Foundation
+        \item VM uses the ast package by AT\&T, written by Kiem-Phong Vo
+        \item Based on paper "Vmalloc: A General and Efficient Memory Allocator"
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Progress: OpenIndiana}
+    \begin{enumerate}
+        \item Legacy malloc function is old, has shortcomings
+        \item malloc not designed for modern environments
+        \item Vmalloc a memory allocation library that is flexible and allows a
+            wide range of memory operations
+            \begin{enumerate}
+                \item Regions to organize memory
+                \item Obtain memory by application definable disciplines
+                \item Customize memory management
+            \end{enumerate}
+    \end{enumerate}
+\end{frame}
+
 \begin{frame}{Summary}
   \begin{columns}[T]
     \begin{column}{0.2\textwidth}
@@ -210,6 +233,10 @@ Krishna Vaidyanathan}
 \item UVM dissertation:\\
   \url{http://vorpal.math.drexel.edu/course/opsys2/uvm-project/uvm.pdf}
   \ei
+  \bi
+  \item Vmalloc: A General and Efficient Memory Allocator:
+      \url{http://onlinelibrary.wiley.com/doi/10.1002/\%28SICI\%291097-024X\%28199603\%2926:3\%3C357::AID-SPE15\%3E3.0.CO;2-\%23/abstract}
+\ei
 \end{frame}
 
 \begin{frame}[noframenumbering]{Attribution}
