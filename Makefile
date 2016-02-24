@@ -6,7 +6,11 @@
 
 MAIN_FILE   = slides
 
-FIGURES     = figures/Retro.png
+FIGURES     = figures/linux1.png \
+			  figures/linux2.png \
+			  figures/linux3.png \
+			  figures/linux4.png \
+			  figures/uvm.png
 
 STYLES_DIR  = styles
 

@@ -3,13 +3,15 @@
 % February 15, 2016
 
 \documentclass[aspectratio=169]{beamer}
-\usepackage{./styles/presentation}
+\usepackage{./styles/Presentation}
 
 \title{Virtual Memory}
 \subtitle{A Project for CS854}
 
 \author[N. Chen, S. Pratt, K. Vaidyanathan]{Nick Chen\\Simon Pratt\\%
 Krishna Vaidyanathan}
+
+\institute[UW]{University of Waterloo}
 
 \date{\today}
 
@@ -148,18 +150,33 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Progress}
+\begin{frame}{Progress: high-level}
   \begin{columns}[T]
     \begin{column}{0.2\textwidth}
     \end{column}
     \begin{column}{0.6\textwidth}
       We have made some progress:
       \bi
-    \item OpenBSD data structures
-    \item Linux data structures
+    \item Linux
+    \item OpenBSD
+    \item OpenIndiana
       \ei
     \end{column}
     \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Progress: Linux}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \bi
+    \item vm\_area\_struct
+      \ei
+      \includegraphics[scale=0.35]{./figures/linux3.png}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[scale=0.35]{./figures/linux1.png}
     \end{column}
   \end{columns}
 \end{frame}
@@ -182,33 +199,6 @@ Krishna Vaidyanathan}
     \end{column}
     \begin{column}{0.6\textwidth}
       \includegraphics[scale=0.35]{./figures/uvm.png}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Progress: Linux}
-  \begin{columns}[T]
-    \begin{column}{0.4\textwidth}
-      \bi
-    \item vm\_area\_struct
-      \ei
-      \includegraphics[scale=0.35]{./figures/linux3.png}
-    \end{column}
-    \begin{column}{0.6\textwidth}
-      \includegraphics[scale=0.35]{./figures/linux1.png}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Progress: Linux}
-  \begin{columns}[T]
-    \begin{column}{0.6\textwidth}
-      \bi
-    \item Out Of Memory Management (OOM)
-      \ei
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      \includegraphics[scale=0.35]{./figures/linux4.png}
     \end{column}
   \end{columns}
 \end{frame}
@@ -236,6 +226,93 @@ Krishna Vaidyanathan}
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Differences}
+  \begin{columns}[T]
+    \begin{column}{0.2\textwidth}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      We have found some significant differences so far:
+      \bi
+    \item What happens when the kernel runs out of memory
+    \item How the kernel accesses user memory
+    \item Copy-on-write mechanisms
+      \ei
+    \end{column}
+    \begin{column}{0.2\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{What happens when the kernel runs out of memory}
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+      Linux:
+      \bi
+    \item Start killing processes
+      \ei
+      \includegraphics[scale=0.35]{./figures/linux4.png}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      BSD:
+      \bi
+    \item Panic!
+      \ei
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      OpenIndiana:
+      \bi
+    \item ???
+      \ei
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{How the kernel accesses user memory}
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+      Linux:
+      \bi
+    \item Map all of physical memory into kernel's virtual address space
+      \ei
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      BSD:
+      \bi
+    \item ???
+      \ei
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      OpenIndiana:
+      \bi
+    \item ???
+      \ei
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Copy-on-write mechanisms}
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+      Linux:
+      \bi
+    \item ???
+      \ei
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      BSD:
+      \bi
+    \item Anonymous maps
+      \ei
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      OpenIndiana:
+      \bi
+    \item ???
+      \ei
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{Summary}
   \begin{columns}[T]
     \begin{column}{0.2\textwidth}
@@ -244,7 +321,8 @@ Krishna Vaidyanathan}
       \bn
     \item Literature Review
       \bi
-    \item Some progress on data structures!
+    \item High-level
+    \item Differences
       \ei
     \item Experimental Design
     \item Implementation
