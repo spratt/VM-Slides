@@ -54,7 +54,7 @@ Krishna Vaidyanathan}
       \pause
     \item Linux
       \pause
-    \item OpenBSD
+    \item NetBSD
       \pause
     \item OpenIndiana\\(Previously Solaris)
       \en
@@ -158,7 +158,7 @@ Krishna Vaidyanathan}
       We have made some progress:
       \bi
     \item Linux
-    \item OpenBSD
+    \item NetBSD
     \item OpenIndiana
       \ei
     \end{column}
@@ -181,24 +181,35 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Progress: OpenBSD}
+\begin{frame}{Progress: NetBSD}
   \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      \includegraphics<5->[scale=0.35]{./figures/uvm.png}
+    \end{column}
     \begin{column}{0.4\textwidth}
       \bi
-    \item 386BSD\\$\downarrow$\\NetBSD\\$\downarrow$\\OpenBSD
+    \item Based on 386BSD, 4.4BSD-Lite
       \pause
-    \item VM based on NetBSD
-      \pause
+    \item Rewritten in 1998 by Chuck Cranor
       \bi
-    \item Rewritten in 1998
+      \pause
+    \item UVM (Unified(?) VM)
+      \pause
+    \item 13 page Usenix paper
       \pause
     \item 270 page PhD dissertation
+      \ei
       \pause
+    \item Slightly modified in 2001 by Chuck Silvers
+      \bi
+      \pause
+    \item UBC (Unified Buffer Cache)
+      \pause
+    \item 5 page Usenix paper
       \ei
+      \pause
+    \item Minor modifications since then
       \ei
-    \end{column}
-    \begin{column}{0.6\textwidth}
-      \includegraphics[scale=0.35]{./figures/uvm.png}
     \end{column}
   \end{columns}
 \end{frame}
@@ -233,9 +244,12 @@ Krishna Vaidyanathan}
     \begin{column}{0.6\textwidth}
       We have found some significant differences so far:
       \bi
-    \item What happens when the kernel runs out of memory
-    \item How the kernel accesses user memory
-    \item Copy-on-write mechanisms
+      \pause
+    \item What happens when the kernel runs out of memory?
+      \pause
+    \item How does the kernel access user memory?
+      \pause
+    \item What are the copy-on-write mechanisms?
       \ei
     \end{column}
     \begin{column}{0.2\textwidth}
@@ -243,7 +257,7 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
-\begin{frame}{What happens when the kernel runs out of memory}
+\begin{frame}{What happens when the kernel runs out of memory?}
   \begin{columns}[T]
     \begin{column}{0.3\textwidth}
       Linux:
@@ -252,12 +266,14 @@ Krishna Vaidyanathan}
       \ei
       \includegraphics[scale=0.35]{./figures/linux4.png}
     \end{column}
+    \pause
     \begin{column}{0.4\textwidth}
-      BSD:
+      NetBSD:
       \bi
     \item Panic!
       \ei
     \end{column}
+    \pause
     \begin{column}{0.3\textwidth}
       OpenIndiana:
       \bi
@@ -267,7 +283,7 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
-\begin{frame}{How the kernel accesses user memory}
+\begin{frame}{How does the kernel access user memory?}
   \begin{columns}[T]
     \begin{column}{0.3\textwidth}
       Linux:
@@ -275,12 +291,14 @@ Krishna Vaidyanathan}
     \item Map all of physical memory into kernel's virtual address space
       \ei
     \end{column}
+    \pause
     \begin{column}{0.4\textwidth}
-      BSD:
+      NetBSD:
       \bi
     \item ???
       \ei
     \end{column}
+    \pause
     \begin{column}{0.3\textwidth}
       OpenIndiana:
       \bi
@@ -290,7 +308,7 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Copy-on-write mechanisms}
+\begin{frame}{What are the copy-on-write mechanisms?}
   \begin{columns}[T]
     \begin{column}{0.3\textwidth}
       Linux:
@@ -298,12 +316,14 @@ Krishna Vaidyanathan}
     \item ???
       \ei
     \end{column}
+    \pause
     \begin{column}{0.4\textwidth}
-      BSD:
+      NetBSD:
       \bi
     \item Anonymous maps
       \ei
     \end{column}
+    \pause
     \begin{column}{0.3\textwidth}
       OpenIndiana:
       \bi
@@ -338,20 +358,27 @@ Krishna Vaidyanathan}
   \bi
 \item UVM dissertation:\\
   \url{http://vorpal.math.drexel.edu/course/opsys2/uvm-project/uvm.pdf}
+\item UVM paper:\\
+  {\footnotesize\url{https://www.usenix.org/legacy/event/usenix99/full_papers/cranor/cranor.pdf}}
+\item UBC paper:\\
+  \url{https://www.usenix.org/legacy/publications/library/proceedings/usenix2000/freenix/silvers.html}
 \item \textsl{Understanding the Linux Virtual Memory Manager}\\
   \url{https://www.kernel.org/doc/gorman/html/understand/index.html}
+\item Vmalloc: A General and Efficient Memory Allocator:\\
+  \url{http://onlinelibrary.wiley.com/doi/10.1002/\%28SICI\%291097-024X\%28199603\%2926:3\%3C357::AID-SPE15\%3E3.0.CO;2-\%23/abstract}
   \ei
-  \bi
-  \item Vmalloc: A General and Efficient Memory Allocator:
-      \url{http://onlinelibrary.wiley.com/doi/10.1002/\%28SICI\%291097-024X\%28199603\%2926:3\%3C357::AID-SPE15\%3E3.0.CO;2-\%23/abstract}
-\ei
 \end{frame}
 
 \begin{frame}[noframenumbering]{Attribution}
-  \tiny
   \bi
-\item OpenBSD data structure diagram from:\\
-  \url{http://usenix.org/legacy/publications/library/proceedings/usenix99/full_papers/cranor/cranor_html/index.html}
+\item NetBSD data structure diagram from:\\
+  {\tiny\url{http://usenix.org/legacy/publications/library/proceedings/usenix99/full_papers/cranor/cranor_html/index.html}}
+\item Linux vm\_area\_struct source from:\\
+  \url{???}
+\item Linux data structures diagram from:\\
+  \url{???}
+\item Linux OOM diagram from:\\
+  \url{???}
   \ei
 \end{frame}
 
