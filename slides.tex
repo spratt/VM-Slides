@@ -3,7 +3,7 @@
 % February 15, 2016
 
 \documentclass[aspectratio=169]{beamer}
-\usepackage{./styles/Presentation}
+\usepackage{./styles/presentation}
 
 \title{Virtual Memory}
 \subtitle{A Project for CS854}
@@ -236,24 +236,39 @@ Krishna Vaidyanathan}
     \begin{enumerate}
         \item Open source fork of OpenSolaris after Oracle take over
         \item Stewarded by the Illumos Foundation
-        \item VM uses the ast package by AT\&T, written by Kiem-Phong Vo
-        \item Based on paper "Vmalloc: A General and Efficient Memory Allocator"
+        %\item VM uses the ast package by AT\&T, written by Kiem-Phong Vo
+        %\item Based on paper "Vmalloc: A General and Efficient Memory Allocator"
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{High-level: OpenIndiana}
+\begin{frame}{Virtual memory management unit}
     \begin{enumerate}
-        \item Legacy malloc function is old, has shortcomings
-        \item malloc not designed for modern environments
-        \item Vmalloc a memory allocation library that is flexible and allows a
-            wide range of memory operations
-            \begin{enumerate}
-                \item Regions to organize memory
-                \item Obtain memory by application definable disciplines
-                \item Customize memory management
-            \end{enumerate}
+        \item Solaris kernel breaks up virtual address space into mappings for
+            each type of memory (eg., heap, stack)
+        \item Hardware MMU maps pages to physical memory using platform-specific
+            translation tables
+        \item Memory management to manage pages is basically swapping and demand
+            paging
     \end{enumerate}
 \end{frame}
+
+\begin{frame}{Solaris 10 Virtual to Physical Memory Management}
+\includegraphics[scale=0.20]{./figures/openindiana_mmu.jpg}
+\end{frame}
+
+%\begin{frame}{High-level: OpenIndiana}
+    %\begin{enumerate}
+        %\item Legacy malloc function is old, has shortcomings
+        %\item malloc not designed for modern environments
+        %\item Vmalloc a memory allocation library that is flexible and allows a
+            %wide range of memory operations
+            %\begin{enumerate}
+                %\item Regions to organize memory
+                %\item Obtain memory by application definable disciplines
+                %\item Customize memory management
+            %\end{enumerate}
+    %\end{enumerate}
+%\end{frame}
 
 \begin{frame}{Differences}
   \begin{columns}[T]
@@ -295,7 +310,9 @@ Krishna Vaidyanathan}
     \begin{column}{0.3\textwidth}
       OpenIndiana:
       \bi
-    \item ???
+    \item Periodically checks kernel space, and "snaps" data to user space if
+        kernel space is low
+    \item If kernel runs out of memory, crashes as far as I can tell
       \ei
     \end{column}
   \end{columns}
