@@ -239,8 +239,6 @@ Krishna Vaidyanathan}
     \begin{enumerate}
         \item Open source fork of OpenSolaris after Oracle take over
         \item Stewarded by the Illumos Foundation
-        %\item VM uses the ast package by AT\&T, written by Kiem-Phong Vo
-        %\item Based on paper "Vmalloc: A General and Efficient Memory Allocator"
     \end{enumerate}
 \end{frame}
 
@@ -273,20 +271,6 @@ Krishna Vaidyanathan}
     \end{columns}
 \end{frame}
 
-%\begin{frame}{High-level: OpenIndiana}
-    %\begin{enumerate}
-        %\item Legacy malloc function is old, has shortcomings
-        %\item malloc not designed for modern environments
-        %\item Vmalloc a memory allocation library that is flexible and allows a
-            %wide range of memory operations
-            %\begin{enumerate}
-                %\item Regions to organize memory
-                %\item Obtain memory by application definable disciplines
-                %\item Customize memory management
-            %\end{enumerate}
-    %\end{enumerate}
-%\end{frame}
-
 \begin{frame}{Differences}
   \begin{columns}[T]
     \begin{column}{0.2\textwidth}
@@ -296,8 +280,6 @@ Krishna Vaidyanathan}
       \bi
       \pause
     \item What happens when the kernel runs out of memory?
-      \pause
-    \item How does the kernel access user memory?
       \pause
     \item What are the copy-on-write mechanisms?
       \ei
@@ -330,31 +312,6 @@ Krishna Vaidyanathan}
     \item Periodically checks kernel space, and "snaps" data to user space if
         kernel space is low
     \item If kernel runs out of memory, crashes as far as I can tell
-      \ei
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{How does the kernel access user memory?}
-  \begin{columns}[T]
-    \begin{column}{0.3\textwidth}
-      Linux:
-      \bi
-    \item Map all of physical memory into kernel's virtual address space
-      \ei
-    \end{column}
-    \pause
-    \begin{column}{0.4\textwidth}
-      NetBSD:
-      \bi
-    \item Copy data from user space to kernel space
-      \ei
-    \end{column}
-    \pause
-    \begin{column}{0.3\textwidth}
-      OpenIndiana:
-      \bi
-    \item ???
       \ei
     \end{column}
   \end{columns}
@@ -417,8 +374,6 @@ Krishna Vaidyanathan}
 \item \textsl{Understanding the Linux Virtual Memory Manager}\\
   \url{https://www.kernel.org/doc/gorman/html/understand/index.html}
 \item McDougall, Richard, and Jim Mauro. Solaris internals: Solaris 10 and OpenSolaris kernel architecture. Pearson Education, 2006.
-%\item Vmalloc: A General and Efficient Memory Allocator:\\
-  %\url{http://onlinelibrary.wiley.com/doi/10.1002/\%28SICI\%291097-024X\%28199603\%2926:3\%3C357::AID-SPE15\%3E3.0.CO;2-\%23/abstract}
   \ei
 \end{frame}
 
