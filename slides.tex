@@ -42,6 +42,33 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
+\begin{frame}{Background: Virtual Memory}
+  \begin{columns}[T]
+    \begin{column}{0.3\textwidth}
+      \includegraphics[scale=0.2]{./figures/Virtual_memory.png}
+    \end{column}
+    \begin{column}{0.7\textwidth}
+      \bi
+    \item (on x86) Instructions operate on virtual addresses
+      \pause
+    \item Data may be stored:
+      \bi
+      \pause
+    \item In physical memory
+      \pause
+    \item On disk
+      \ei
+      \pause
+    \item Each process has a page table
+      \bi
+      \pause
+    \item Maps virtual $\rightarrow$ physical addresses
+      \ei
+      \ei
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{Proposal}
   \begin{columns}[T]
     \begin{column}{0.2\textwidth}
@@ -189,13 +216,10 @@ Krishna Vaidyanathan}
     \begin{column}{0.2\textwidth}
     \end{column}
     \begin{column}{0.6\textwidth}
-      We now understand the VM design at a high-level:
+      Now we'll summarize the VM design of:
       \bi
-      \pause
     \item Linux
-      \pause
     \item NetBSD
-      \pause
     \item OpenIndiana
       \ei
     \end{column}
@@ -251,37 +275,39 @@ Krishna Vaidyanathan}
   \end{columns}
 \end{frame}
 
+\begin{frame}{History: OpenIndiana}
+  \begin{enumerate}
+    \pause
+  \item Open source fork of OpenSolaris after Oracle take over
+    \pause
+  \item Stewarded by the Illumos Foundation
+  \end{enumerate}
+\end{frame}
+
 \begin{frame}{High-level: OpenIndiana}
-    \begin{enumerate}
-        \item Open source fork of OpenSolaris after Oracle take over
-        \item Stewarded by the Illumos Foundation
-    \end{enumerate}
+  \begin{enumerate}
+  \item Solaris kernel breaks up virtual address space into mappings for each type of memory (eg., heap, stack)
+    \pause
+  \item Hardware MMU maps pages to physical memory using platform-specific translation tables
+    \pause
+  \item Memory management to manage pages is basically swapping and demand paging
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{Virtual memory management unit}
-    \begin{enumerate}
-        \item Solaris kernel breaks up virtual address space into mappings for
-            each type of memory (eg., heap, stack)
-        \item Hardware MMU maps pages to physical memory using platform-specific
-            translation tables
-        \item Memory management to manage pages is basically swapping and demand
-            paging
-    \end{enumerate}
+\begin{frame}{High-level: OpenIndiana}
+  \begin{center}
+    \includegraphics[scale=0.25]{./figures/openindiana_mmu.jpg}
+  \end{center}
 \end{frame}
 
-\begin{frame}{Solaris 10 Virtual to Physical Memory Management}
-\includegraphics[scale=0.20]{./figures/openindiana_mmu.jpg}
-\end{frame}
-
-\begin{frame}{Solaris 10 page table structure}
+\begin{frame}{High-level: OpenIndiana}
     \begin{columns}[T]
-        \begin{column}{0.6\textwidth}
-            \includegraphics<1->[scale=0.15]{./figures/page_structure.png}
+        \begin{column}{0.7\textwidth}
+            \includegraphics<1->[scale=0.25]{./figures/page_structure.png}
         \end{column}
-        \begin{column}{0.4\textwidth}
+        \begin{column}{0.3\textwidth}
             \bi
-                \item Page table structure different from x86 hardware page table
-                    structure
+                \item Page table structure different from x86 hardware page table structure
             \ei
         \end{column}
     \end{columns}
@@ -395,6 +421,7 @@ Krishna Vaidyanathan}
 
 \begin{frame}[noframenumbering]{Attribution}
   \bi
+  \item Virtual memory diagram by Ehamberg (Own work) [CC BY-SA 3.0 (\tiny\url{http://creativecommons.org/licenses/by-sa/3.0})], via Wikimedia Commons
 \item NetBSD data structure diagram from:\\
   {\tiny\url{http://usenix.org/legacy/publications/library/proceedings/usenix99/full_papers/cranor/cranor_html/index.html}}
 \item Linux vm\_area\_struct source from:\\
